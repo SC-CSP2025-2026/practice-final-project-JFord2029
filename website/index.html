@@ -2,11 +2,69 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Music Genres</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #008080, #00ffff);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .container {
+        background-color: rgba(255, 255, 255, 0.2);
+        padding: 40px;
+        border-radius: 20px;
+        text-align: center;
+        width: 420px;
+        color: white;
+      }
+
+      h1 {
+        margin-bottom: 30px;
+      }
+
+      button {
+        padding: 15px 35px;
+        margin: 10px;
+        font-size: 18px;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        background-color: #00b3b3;
+        color: white;
+      }
+
+      button:hover {
+        background-color: #00ffff;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      li {
+        margin: 8px 0;
+      }
+    </style>
   </head>
+
   <body>
-    <h1>hello world!</h1>
+    <div class="container">
+      <h1>Choose a Genre</h1>
+
+      <button onclick="getSongs('POP')">Pop</button>
+      <button onclick="getSongs('TOP')">Top Hits</button>
+      <button onclick="getSongs('COUNTRY')">Country</button>
+
+      <div id="songs"></div>
+    </div>
+
     <script src="js/script.js"></script>
   </body>
 </html>
