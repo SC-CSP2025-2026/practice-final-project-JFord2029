@@ -1,52 +1,26 @@
-const API_KEY =
-  "efe786bfa815bd9cc3b7d7e2f1b42c2bcdee838b7290b2b0420db3cb54a3793f";
+const getSongsByChart = async (chart) => {
+  const url = `https://student-api-proxy.onrender.com/api/billboard-charts-api.p.rapidapi.com/chart.php?id=${chart}`;
+  const options = {
+    method: "GET",
+    headers: {
+      "X-API-Key":
+        "efe786bfa815bd9cc3b7d7e2f1b42c2bcdee838b7290b2b0420db3cb54a3793f",
+    },
+  };
+  console.log("Inside function");
+  const response = await fetch(url, options);
+  console.log(response);
+  const result = await response.json();
+  console.log(result);
+  const data = result.data;
+  console.log(data);
+  const songs = data.songs;
+  // console.log(data);
 
-const charts = {
-  POP: "pop-songs",
-  TOP: "hot-100",
-  COUNTRY: "country-songs",
-};
-
-async function getSongs(type) {
-  const chartId = charts[type];
-
-  if (!chartId) {
-    alert("Invalid chart type.");
-    return;
-  }
-
-  const url = `https://billboard-charts-api.p.rapidapi.com/charts.php?id=${chartId}`;
-
-  try {
-    const res = await fetch(url, {
-      method: "GET",
-      headers: {
-        "x-rapidapi-key":
-          efe786bfa815bd9cc3b7d7e2f1b42c2bcdee838b7290b2b0420db3cb54a3793f,
-        "x-rapidapi-host": "billboard-charts-api.p.rapidapi.com",
-      },
-    });
-
-    const data = await res.json();
-    displaySongs(data.content);
-  } catch (err) {
-    console.error(err);
-    document.getElementById("songs").innerHTML =
-      "<p>Failed to load songs. Check API key or internet.</p>";
-  }
-}
-
-function displaySongs(songs) {
-  const container = document.getElementById("songs");
-  container.innerHTML = "";
-
-  const ul = document.createElement("ul");
-
-  songs.slice(0, 20).forEach((song) => {
-    const li = document.createElement("li");
-    li.textContent = `${song.rank}. ${song.title} — ${song.artist}`;
-    ul.appendChild(li);
+  songs.forEach((song) => {
+    console.log(song.artist);
+    console.log(song.name);
   });
-
-  container.appendChild(ul);
-}
+};
+console.log("Running script");
+getSongsByChart("vinyl-ablums");
